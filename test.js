@@ -1,36 +1,29 @@
-'use strict';
-var test = require('ava');
-var fn = require('./');
+import test from 'ava';
+import fn from './';
 
-test('.file()', function (t) {
-	return fn.file('package.json').then(function (isFile) {
-		t.true(isFile);
-	});
+test('.file()', async t => {
+	t.true(await fn.file('package.json'));
 });
 
-test('.dir()', function (t) {
-	return fn.dir('.').then(function (isDir) {
-		t.true(isDir);
-	});
+test('.dir()', async t => {
+	t.true(await fn.dir('.'));
 });
 
-test('.symlink()', function (t) {
-	return fn.symlink('symlink').then(function (isSymlink) {
-		t.true(isSymlink);
-	});
+test('.symlink()', async t => {
+	t.true(await fn.symlink('symlink'));
 });
 
-test('.fileSync()', function (t) {
+test('.fileSync()', t => {
 	t.true(fn.fileSync('package.json'));
 	t.end();
 });
 
-test('.dirSync()', function (t) {
+test('.dirSync()', t => {
 	t.true(fn.dirSync('.'));
 	t.end();
 });
 
-test('.symlinkSync()', function (t) {
+test('.symlinkSync()', t => {
 	t.true(fn.symlinkSync('symlink'));
 	t.end();
 });
