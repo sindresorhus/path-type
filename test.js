@@ -15,15 +15,12 @@ test('.symlink()', async t => {
 
 test('.fileSync()', t => {
 	t.true(fn.fileSync('package.json'));
-	t.end();
 });
 
 test('.dirSync()', t => {
 	t.true(fn.dirSync('.'));
-	t.end();
 });
 
 test('.symlinkSync()', t => {
 	t.true(fn.symlinkSync('symlink'));
-	t.end();
 });
