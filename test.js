@@ -1,26 +1,26 @@
 import test from 'ava';
-import fn from './';
+import m from './';
 
 test('.file()', async t => {
-	t.true(await fn.file('package.json'));
+	t.true(await m.file('package.json'));
 });
 
 test('.dir()', async t => {
-	t.true(await fn.dir('.'));
+	t.true(await m.dir('.'));
 });
 
 test('.symlink()', async t => {
-	t.true(await fn.symlink('symlink'));
+	t.true(await m.symlink('symlink'));
 });
 
 test('.fileSync()', t => {
-	t.true(fn.fileSync('package.json'));
+	t.true(m.fileSync('package.json'));
 });
 
 test('.dirSync()', t => {
-	t.true(fn.dirSync('.'));
+	t.true(m.dirSync('.'));
 });
 
 test('.symlinkSync()', t => {
-	t.true(fn.symlinkSync('symlink'));
+	t.true(m.symlinkSync('symlink'));
 });
