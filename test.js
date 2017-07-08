@@ -24,3 +24,11 @@ test('.dirSync()', t => {
 test('.symlinkSync()', t => {
 	t.true(m.symlinkSync('symlink'));
 });
+
+test('return false if path doesn\'t exist - async', async t => {
+	t.false(await m.file('unicorn'));
+});
+
+test('return false if path doesn\'t exist - sync', t => {
+	t.false(m.fileSync('unicorn'));
+});
