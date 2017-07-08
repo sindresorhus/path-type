@@ -1,6 +1,6 @@
 {
 	"name": "path-type",
-	"version": "2.0.0",
+	"version": "3.0.0",
 	"description": "Check if a path is a file, directory, or symlink",
 	"license": "MIT",
 	"repository": "sindresorhus/path-type",
