@@ -9,12 +9,12 @@ function type(fn, fn2, fp) {
 
 	return pify(fs[fn])(fp)
 		.then(stats => stats[fn2]())
-		.catch(err => {
-			if (err.code === 'ENOENT') {
+		.catch(error => {
+			if (error.code === 'ENOENT') {
 				return false;
 			}
 
-			throw err;
+			throw error;
 		});
 }
 
@@ -25,12 +25,12 @@ function typeSync(fn, fn2, fp) {
 
 	try {
 		return fs[fn](fp)[fn2]();
-	} catch (err) {
-		if (err.code === 'ENOENT') {
+	} catch (error) {
+		if (error.code === 'ENOENT') {
 			return false;
 		}
 
-		throw err;
+		throw error;
 	}
 }
 
