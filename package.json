@@ -10,7 +10,7 @@
 		"url": "sindresorhus.com"
 	},
 	"engines": {
-		"node": ">=6"
+		"node": ">=8"
 	},
 	"scripts": {
 		"test": "xo && nyc ava"
@@ -35,9 +35,6 @@
 		"stats",
 		"filesystem"
 	],
-	"dependencies": {
-		"pify": "^4.0.1"
-	},
 	"devDependencies": {
 		"ava": "*",
 		"nyc": "^13.3.0",
