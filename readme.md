@@ -30,6 +30,12 @@ pathType.file('package.json').then(isFile => {
 
 Returns a `Promise` for a `boolean` of whether the path is the checked type.
 
+#### path
+
+Type: `string`
+
+The path to check.
+
 ### .fileSync(path)
 ### .dirSync(path)
 ### .symlinkSync(path)
