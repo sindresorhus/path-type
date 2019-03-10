@@ -22,9 +22,9 @@ Object.defineProperties(fs, {
 });
 
 test('throws on EACCES error - async', async t => {
-	await t.throwsAsync(pathType.file('/root/private'));
+	await t.throwsAsync(pathType.isFile('/root/private'));
 });
 
 test('throws on EACCES error - sync', t => {
-	t.throws(() => pathType.fileSync('/root/private'));
+	t.throws(() => pathType.isFileSync('/root/private'));
 });

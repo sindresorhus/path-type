@@ -1,30 +1,30 @@
-export type PathTypeFn = (path: string) => Promise<boolean>;
+export type PathTypeFunction = (path: string) => Promise<boolean>;
 
 /**
  * Checks whether the passed `path` is a file.
  *
  * @param path - The path to check.
- * @returns A Promise for a boolean of whether the `path` is a file.
+ * @returns Whether the `path` is a file.
  */
-export const file: PathTypeFn;
+export const isFile: PathTypeFunction;
 
 /**
  * Checks whether the passed `path` is a directory.
  *
  * @param path - The path to check.
- * @returns A Promise for a boolean of whether the `path` is a directory.
+ * @returns Whether the `path` is a directory.
  */
-export const dir: PathTypeFn;
+export const isDirectory: PathTypeFunction;
 
 /**
- * Checks whether the passed `path` is a directory.
+ * Checks whether the passed `path` is a symlink.
  *
  * @param path - The path to check.
- * @returns A Promise for a boolean of whether the `path` is a symlink.
+ * @returns Whether the `path` is a symlink.
  */
-export const symlink: PathTypeFn;
+export const isSymlink: PathTypeFunction;
 
-export type PathTypeSyncFn = (path: string) => boolean;
+export type PathTypeSyncFunction = (path: string) => boolean;
 
 /**
  * Synchronously checks whether the passed `path` is a file.
@@ -32,7 +32,7 @@ export type PathTypeSyncFn = (path: string) => boolean;
  * @param path - The path to check.
  * @returns Whether the `path` is a file.
  */
-export const fileSync: PathTypeSyncFn;
+export const isFileSync: PathTypeSyncFunction;
 
 /**
  * Synchronously checks whether the passed `path` is a directory.
@@ -40,12 +40,12 @@ export const fileSync: PathTypeSyncFn;
  * @param path - The path to check.
  * @returns Whether the `path` is a directory.
  */
-export const dirSync: PathTypeSyncFn;
+export const isDirectorySync: PathTypeSyncFunction;
 
 /**
- * Synchronously checks whether the passed `path` is a directory.
+ * Synchronously checks whether the passed `path` is a symlink.
  *
  * @param path - The path to check.
  * @returns Whether the `path` is a directory.
  */
-export const symlinkSync: PathTypeSyncFn;
+export const isSymlinkSync: PathTypeSyncFunction;

@@ -15,7 +15,7 @@ $ npm install path-type
 ```js
 const pathType = require('path-type');
 
-pathType.file('package.json').then(isFile => {
+pathType.isFile('package.json').then(isFile => {
 	console.log(isFile);
 	//=> true
 })
@@ -24,11 +24,23 @@ pathType.file('package.json').then(isFile => {
 
 ## API
 
-### .file(path)
-### .dir(path)
-### .symlink(path)
+### .isFile(path)
 
-Returns a `Promise` for a `boolean` of whether the path is the checked type.
+Checks whether the passed `path` is a file.
+
+Returns `Promise` for a `boolean`.
+
+### .isDirectory(path)
+
+Checks whether the passed `path` is a directory.
+
+Returns `Promise` for a `boolean`.
+
+### .isSymlink(path)
+
+Checks whether the passed `path` is a symlink.
+
+Returns `Promise` for a `boolean`.
 
 #### path
 
@@ -36,12 +48,23 @@ Type: `string`
 
 The path to check.
 
-### .fileSync(path)
-### .dirSync(path)
-### .symlinkSync(path)
+### .isFileSync(path)
 
-Returns a `boolean` of whether the path is the checked type.
+Synchronously checks whether the passed `path` is a file.
 
+Returns a `boolean`.
+
+### .isDirectorySync(path)
+
+Synchronously checks whether the passed `path` is a directory.
+
+Returns a `boolean`.
+
+### .isSymlinkSync(path)
+
+Synchronously checks whether the passed `path` is a symlink.
+
+Returns a `boolean`.
 
 ## License
 

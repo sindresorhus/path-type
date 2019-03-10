@@ -2,48 +2,48 @@ import test from 'ava';
 import pathType from '..';
 
 test('.file()', async t => {
-	t.true(await pathType.file('package.json'));
-	await t.throwsAsync(pathType.file(false));
+	t.true(await pathType.isFile('package.json'));
+	await t.throwsAsync(pathType.isFile(false));
 });
 
 test('.dir()', async t => {
-	t.true(await pathType.dir('.'));
-	await t.throwsAsync(pathType.dir(false));
+	t.true(await pathType.isDirectory('.'));
+	await t.throwsAsync(pathType.isDirectory(false));
 });
 
 if (process.platform !== 'win32') {
 	test('.symlink()', async t => {
-		t.true(await pathType.symlink('symlink'));
-		await t.throwsAsync(pathType.symlink(false));
+		t.true(await pathType.isSymlink('symlink'));
+		await t.throwsAsync(pathType.isSymlink(false));
 	});
 }
 
 test('.fileSync()', t => {
-	t.true(pathType.fileSync('package.json'));
+	t.true(pathType.isFileSync('package.json'));
 });
 
 test('.dirSync()', t => {
-	t.true(pathType.dirSync('.'));
+	t.true(pathType.isDirectorySync('.'));
 });
 
 if (process.platform !== 'win32') {
 	test('.symlinkSync()', t => {
-		t.true(pathType.symlinkSync('symlink'));
+		t.true(pathType.isSymlinkSync('symlink'));
 	});
 }
 
 test('return false if path doesn\'t exist - async', async t => {
-	t.false(await pathType.file('unicorn'));
+	t.false(await pathType.isFile('unicorn'));
 });
 
 test('return false if path doesn\'t exist - sync', t => {
-	t.false(pathType.fileSync('unicorn'));
+	t.false(pathType.isFileSync('unicorn'));
 });
 
 test('throws invalid argument - async', async t => {
-	await t.throwsAsync(pathType.file(false));
+	await t.throwsAsync(pathType.isFile(false));
 });
 
 test('throws on invalid argument - sync', t => {
-	t.throws(() => pathType.fileSync(false));
+	t.throws(() => pathType.isFileSync(false));
 });
