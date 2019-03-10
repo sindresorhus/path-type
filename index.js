@@ -1,21 +1,23 @@
 'use strict';
 const fs = require('fs');
-const pify = require('pify');
+const {promisify} = require('util');
 
-function type(fn, fn2, fp) {
+async function type(fn, fn2, fp) {
 	if (typeof fp !== 'string') {
-		return Promise.reject(new TypeError(`Expected a string, got ${typeof fp}`));
+		throw new TypeError(`Expected a string, got ${typeof fp}`);
 	}
 
-	return pify(fs[fn])(fp)
-		.then(stats => stats[fn2]())
-		.catch(error => {
-			if (error.code === 'ENOENT') {
-				return false;
-			}
+	try {
+		const stats = await promisify(fs[fn])(fp);
 
-			throw error;
-		});
+		return stats[fn2]();
+	} catch (error) {
+		if (error.code === 'ENOENT') {
+			return false;
+		}
+
+		throw error;
+	}
 }
 
 function typeSync(fn, fn2, fp) {
