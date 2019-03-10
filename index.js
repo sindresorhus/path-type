@@ -10,6 +10,7 @@ async function isType(fsStatType, statsMethodName, filePath) {
 
 	try {
 		const stats = await promisify(fs[fsStatType])(filePath);
+
 		return stats[statsMethodName]();
 	} catch (error) {
 		if (error.code === 'ENOENT') {
