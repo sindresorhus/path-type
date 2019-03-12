@@ -13,34 +13,22 @@ $ npm install path-type
 ## Usage
 
 ```js
-const pathType = require('path-type');
+const {isFile} = require('path-type');
 
-pathType.isFile('package.json').then(isFile => {
-	console.log(isFile);
+(async () => {
+	console.log(await isFile('package.json'));
 	//=> true
-})
+})();
 ```
 
 
 ## API
 
-### .isFile(path)
+### isFile(path)
 
-Checks whether the passed `path` is a file.
+Check whether the passed `path` is a file.
 
-Returns `Promise` for a `boolean`.
-
-### .isDirectory(path)
-
-Checks whether the passed `path` is a directory.
-
-Returns `Promise` for a `boolean`.
-
-### .isSymlink(path)
-
-Checks whether the passed `path` is a symlink.
-
-Returns `Promise` for a `boolean`.
+Returns a `Promise<boolean>`.
 
 #### path
 
@@ -48,23 +36,36 @@ Type: `string`
 
 The path to check.
 
-### .isFileSync(path)
+### isDirectory(path)
 
-Synchronously checks whether the passed `path` is a file.
+Check whether the passed `path` is a directory.
+
+Returns a `Promise<boolean>`.
+
+### isSymlink(path)
+
+Check whether the passed `path` is a symlink.
+
+Returns a `Promise<boolean>`.
+
+### isFileSync(path)
+
+Synchronously check whether the passed `path` is a file.
 
 Returns a `boolean`.
 
-### .isDirectorySync(path)
+### isDirectorySync(path)
 
-Synchronously checks whether the passed `path` is a directory.
+Synchronously check whether the passed `path` is a directory.
+
+Returns a `boolean`.
+
+### isSymlinkSync(path)
+
+Synchronously check whether the passed `path` is a symlink.
 
 Returns a `boolean`.
 
-### .isSymlinkSync(path)
-
-Synchronously checks whether the passed `path` is a symlink.
-
-Returns a `boolean`.
 
 ## License
 

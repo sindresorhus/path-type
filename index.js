@@ -1,16 +1,14 @@
 'use strict';
-
 const {promisify} = require('util');
 const fs = require('fs');
 
 async function isType(fsStatType, statsMethodName, filePath) {
 	if (typeof filePath !== 'string') {
-		return Promise.reject(new TypeError(`Expected a string, got ${typeof filePath}`));
+		throw new TypeError(`Expected a string, got ${typeof filePath}`);
 	}
 
 	try {
 		const stats = await promisify(fs[fsStatType])(filePath);
-
 		return stats[statsMethodName]();
 	} catch (error) {
 		if (error.code === 'ENOENT') {
