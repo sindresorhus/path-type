@@ -1,16 +1,17 @@
 'use strict';
-const fs = require('fs');
+
 const {promisify} = require('util');
+const fs = require('fs');
 
-async function type(fn, fn2, fp) {
-	if (typeof fp !== 'string') {
-		throw new TypeError(`Expected a string, got ${typeof fp}`);
+async function isType(fsStatType, statsMethodName, filePath) {
+	if (typeof filePath !== 'string') {
+		return Promise.reject(new TypeError(`Expected a string, got ${typeof filePath}`));
 	}
 
 	try {
-		const stats = await promisify(fs[fn])(fp);
+		const stats = await promisify(fs[fsStatType])(filePath);
 
-		return stats[fn2]();
+		return stats[statsMethodName]();
 	} catch (error) {
 		if (error.code === 'ENOENT') {
 			return false;
@@ -20,13 +21,13 @@ async function type(fn, fn2, fp) {
 	}
 }
 
-function typeSync(fn, fn2, fp) {
-	if (typeof fp !== 'string') {
-		throw new TypeError(`Expected a string, got ${typeof fp}`);
+function isTypeSync(fsStatType, statsMethodName, filePath) {
+	if (typeof filePath !== 'string') {
+		throw new TypeError(`Expected a string, got ${typeof filePath}`);
 	}
 
 	try {
-		return fs[fn](fp)[fn2]();
+		return fs[fsStatType](filePath)[statsMethodName]();
 	} catch (error) {
 		if (error.code === 'ENOENT') {
 			return false;
@@ -36,9 +37,9 @@ function typeSync(fn, fn2, fp) {
 	}
 }
 
-exports.file = type.bind(null, 'stat', 'isFile');
-exports.dir = type.bind(null, 'stat', 'isDirectory');
-exports.symlink = type.bind(null, 'lstat', 'isSymbolicLink');
-exports.fileSync = typeSync.bind(null, 'statSync', 'isFile');
-exports.dirSync = typeSync.bind(null, 'statSync', 'isDirectory');
-exports.symlinkSync = typeSync.bind(null, 'lstatSync', 'isSymbolicLink');
+exports.isFile = isType.bind(null, 'stat', 'isFile');
+exports.isDirectory = isType.bind(null, 'stat', 'isDirectory');
+exports.isSymlink = isType.bind(null, 'lstat', 'isSymbolicLink');
+exports.isFileSync = isTypeSync.bind(null, 'statSync', 'isFile');
+exports.isDirectorySync = isTypeSync.bind(null, 'statSync', 'isDirectory');
+exports.isSymlinkSync = isTypeSync.bind(null, 'lstatSync', 'isSymbolicLink');

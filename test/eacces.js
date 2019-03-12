@@ -1,6 +1,6 @@
 import fs from 'fs';
 import test from 'ava';
-import m from '..';
+import pathType from '..';
 
 function fakeError(fp) {
 	const error = new Error(`EACCES: permission denied, stat '${fp}'`);
@@ -22,9 +22,9 @@ Object.defineProperties(fs, {
 });
 
 test('throws on EACCES error - async', async t => {
-	await t.throwsAsync(m.file('/root/private'));
+	await t.throwsAsync(pathType.isFile('/root/private'));
 });
 
 test('throws on EACCES error - sync', t => {
-	t.throws(() => m.fileSync('/root/private'));
+	t.throws(() => pathType.isFileSync('/root/private'));
 });
