@@ -1,4 +1,4 @@
-# path-type [![Build Status](https://travis-ci.org/sindresorhus/path-type.svg?branch=master)](https://travis-ci.org/sindresorhus/path-type)
+# path-type
 
 > Check if a path is a file, directory, or symlink
 
