@@ -40,14 +40,3 @@ export const isSymlink = isType.bind(null, 'lstat', 'isSymbolicLink');
 export const isFileSync = isTypeSync.bind(null, 'statSync', 'isFile');
 export const isDirectorySync = isTypeSync.bind(null, 'statSync', 'isDirectory');
 export const isSymlinkSync = isTypeSync.bind(null, 'lstatSync', 'isSymbolicLink');
-
-const pathType = {
-	isFile,
-	isDirectory,
-	isSymlink,
-	isFileSync,
-	isDirectorySync,
-	isSymlinkSync
-};
-
-export default pathType;
