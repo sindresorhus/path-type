@@ -1,6 +1,6 @@
 import fs from 'fs';
 import test from 'ava';
-import pathType from '..';
+import pathType from '../index.js';
 
 function fakeError(fp) {
 	const error = new Error(`EACCES: permission denied, stat '${fp}'`);

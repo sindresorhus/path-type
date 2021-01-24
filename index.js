@@ -1,6 +1,5 @@
-'use strict';
-const {promisify} = require('util');
-const fs = require('fs');
+import {promisify} from 'util';
+import fs from 'fs';
 
 async function isType(fsStatType, statsMethodName, filePath) {
 	if (typeof filePath !== 'string') {
@@ -35,9 +34,20 @@ function isTypeSync(fsStatType, statsMethodName, filePath) {
 	}
 }
 
-exports.isFile = isType.bind(null, 'stat', 'isFile');
-exports.isDirectory = isType.bind(null, 'stat', 'isDirectory');
-exports.isSymlink = isType.bind(null, 'lstat', 'isSymbolicLink');
-exports.isFileSync = isTypeSync.bind(null, 'statSync', 'isFile');
-exports.isDirectorySync = isTypeSync.bind(null, 'statSync', 'isDirectory');
-exports.isSymlinkSync = isTypeSync.bind(null, 'lstatSync', 'isSymbolicLink');
+export const isFile = isType.bind(null, 'stat', 'isFile');
+export const isDirectory = isType.bind(null, 'stat', 'isDirectory');
+export const isSymlink = isType.bind(null, 'lstat', 'isSymbolicLink');
+export const isFileSync = isTypeSync.bind(null, 'statSync', 'isFile');
+export const isDirectorySync = isTypeSync.bind(null, 'statSync', 'isDirectory');
+export const isSymlinkSync = isTypeSync.bind(null, 'lstatSync', 'isSymbolicLink');
+
+const pathType = {
+	isFile,
+	isDirectory,
+	isSymlink,
+	isFileSync,
+	isDirectorySync,
+	isSymlinkSync
+};
+
+export default pathType;
