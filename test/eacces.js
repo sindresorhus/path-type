@@ -1,22 +1,30 @@
-import fs from 'fs';
+import fs, {promises as fsPromises} from 'fs';
 import test from 'ava';
 import {isFile, isFileSync} from '../index.js';
 
-function fakeError(fp) {
-	const error = new Error(`EACCES: permission denied, stat '${fp}'`);
+function fakeError(filePath) {
+	const error = new Error(`EACCES: permission denied, stat '${filePath}'`);
 	error.code = 'EACCES';
 	return error;
 }
 
+Object.defineProperties(fsPromises, {
+	stat: {
+		value(filePath, callback) {
+			callback(fakeError(filePath));
+		}
+	}
+});
+
 Object.defineProperties(fs, {
 	stat: {
-		value(fp, cb) {
-			cb(fakeError(fp));
+		value(filePath, callback) {
+			callback(fakeError(filePath));
 		}
 	},
 	statSync: {
-		value(fp) {
-			throw fakeError(fp);
+		value(filePath) {
+			throw fakeError(filePath);
 		}
 	}
 });
@@ -26,5 +34,7 @@ test('throws on EACCES error - async', async t => {
 });
 
 test('throws on EACCES error - sync', t => {
-	t.throws(() => isFileSync('/root/private'));
+	t.throws(() => {
+		isFileSync('/root/private');
+	});
 });

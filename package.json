@@ -4,10 +4,11 @@
 	"description": "Check if a path is a file, directory, or symlink",
 	"license": "MIT",
 	"repository": "sindresorhus/path-type",
+	"funding": "https://github.com/sponsors/sindresorhus",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"url": "https://sindresorhus.com"
 	},
 	"type": "module",
 	"exports": "./index.js",
@@ -28,7 +29,6 @@
 		"is",
 		"check",
 		"directory",
-		"dir",
 		"file",
 		"filepath",
 		"symlink",
@@ -40,7 +40,7 @@
 	],
 	"devDependencies": {
 		"ava": "^3.15.0",
-		"nyc": "^13.3.0",
+		"nyc": "^15.1.0",
 		"tsd": "^0.14.0",
 		"xo": "^0.37.1"
 	}

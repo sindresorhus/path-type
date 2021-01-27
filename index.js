@@ -1,5 +1,4 @@
-import {promisify} from 'util';
-import fs from 'fs';
+import fs, {promises as fsPromises} from 'fs';
 
 async function isType(fsStatType, statsMethodName, filePath) {
 	if (typeof filePath !== 'string') {
@@ -7,7 +6,7 @@ async function isType(fsStatType, statsMethodName, filePath) {
 	}
 
 	try {
-		const stats = await promisify(fs[fsStatType])(filePath);
+		const stats = await fsPromises[fsStatType](filePath);
 		return stats[statsMethodName]();
 	} catch (error) {
 		if (error.code === 'ENOENT') {

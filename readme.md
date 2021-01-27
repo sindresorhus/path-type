@@ -2,25 +2,20 @@
 
 > Check if a path is a file, directory, or symlink
 
-
 ## Install
 
 ```
 $ npm install path-type
 ```
 
-
 ## Usage
 
 ```js
-const {isFile} = require('path-type');
+import {isFile} from 'path-type';
 
-(async () => {
-	console.log(await isFile('package.json'));
-	//=> true
-})();
+console.log(await isFile('package.json'));
+//=> true
 ```
-
 
 ## API
 
@@ -65,7 +60,6 @@ Returns a `boolean`.
 Synchronously check whether the passed `path` is a symlink.
 
 Returns a `boolean`.
-
 
 ---
 
