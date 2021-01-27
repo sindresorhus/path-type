@@ -1,4 +1,4 @@
-import {expectType} from 'tsd-check';
+import {expectType} from 'tsd';
 import {
 	isFile,
 	isDirectory,
@@ -6,7 +6,7 @@ import {
 	isFileSync,
 	isDirectorySync,
 	isSymlinkSync
-} from '.';
+} from './index.js';
 
 expectType<Promise<boolean>>(isFile('package.json'));
 expectType<Promise<boolean>>(isDirectory('package.json'));
