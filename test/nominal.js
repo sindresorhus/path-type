@@ -1,5 +1,12 @@
 import test from 'ava';
-import {isDirectory, isDirectorySync, isFile, isFileSync, isSymlink, isSymlinkSync} from '../index.js';
+import {
+	isDirectory,
+	isDirectorySync,
+	isFile,
+	isFileSync,
+	isSymlink,
+	isSymlinkSync
+} from '../index.js';
 
 test('.file()', async t => {
 	t.true(await isFile('package.json'));
@@ -38,6 +45,14 @@ test('return false if path doesn\'t exist - async', async t => {
 
 test('return false if path doesn\'t exist - sync', t => {
 	t.false(isFileSync('unicorn'));
+});
+
+test('return false if path is invalid - async', async t => {
+	t.false(await isFile('/\u0000path.txt'));
+});
+
+test('return false if path is invalid - sync', t => {
+	t.false(isFileSync('/\u0000path.txt'));
 });
 
 test('throws invalid argument - async', async t => {

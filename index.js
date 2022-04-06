@@ -9,7 +9,7 @@ async function isType(fsStatType, statsMethodName, filePath) {
 		const stats = await fsPromises[fsStatType](filePath);
 		return stats[statsMethodName]();
 	} catch (error) {
-		if (error.code === 'ENOENT') {
+		if (error.code === 'ENOENT' || error.code === 'ERR_INVALID_ARG_VALUE') {
 			return false;
 		}
 
@@ -25,7 +25,7 @@ function isTypeSync(fsStatType, statsMethodName, filePath) {
 	try {
 		return fs[fsStatType](filePath)[statsMethodName]();
 	} catch (error) {
-		if (error.code === 'ENOENT') {
+		if (error.code === 'ENOENT' || error.code === 'ERR_INVALID_ARG_VALUE') {
 			return false;
 		}
 
@@ -38,4 +38,8 @@ export const isDirectory = isType.bind(null, 'stat', 'isDirectory');
 export const isSymlink = isType.bind(null, 'lstat', 'isSymbolicLink');
 export const isFileSync = isTypeSync.bind(null, 'statSync', 'isFile');
 export const isDirectorySync = isTypeSync.bind(null, 'statSync', 'isDirectory');
-export const isSymlinkSync = isTypeSync.bind(null, 'lstatSync', 'isSymbolicLink');
+export const isSymlinkSync = isTypeSync.bind(
+	null,
+	'lstatSync',
+	'isSymbolicLink'
+);
