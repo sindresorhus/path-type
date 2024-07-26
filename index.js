@@ -1,4 +1,5 @@
-import fs, {promises as fsPromises} from 'fs';
+import fs from 'node:fs';
+import fsPromises from 'node:fs/promises';
 
 async function isType(fsStatType, statsMethodName, filePath) {
 	if (typeof filePath !== 'string') {
@@ -33,9 +34,9 @@ function isTypeSync(fsStatType, statsMethodName, filePath) {
 	}
 }
 
-export const isFile = isType.bind(null, 'stat', 'isFile');
-export const isDirectory = isType.bind(null, 'stat', 'isDirectory');
-export const isSymlink = isType.bind(null, 'lstat', 'isSymbolicLink');
-export const isFileSync = isTypeSync.bind(null, 'statSync', 'isFile');
-export const isDirectorySync = isTypeSync.bind(null, 'statSync', 'isDirectory');
-export const isSymlinkSync = isTypeSync.bind(null, 'lstatSync', 'isSymbolicLink');
+export const isFile = isType.bind(undefined, 'stat', 'isFile');
+export const isDirectory = isType.bind(undefined, 'stat', 'isDirectory');
+export const isSymlink = isType.bind(undefined, 'lstat', 'isSymbolicLink');
+export const isFileSync = isTypeSync.bind(undefined, 'statSync', 'isFile');
+export const isDirectorySync = isTypeSync.bind(undefined, 'statSync', 'isDirectory');
+export const isSymlinkSync = isTypeSync.bind(undefined, 'lstatSync', 'isSymbolicLink');

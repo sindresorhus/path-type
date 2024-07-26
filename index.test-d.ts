@@ -5,7 +5,7 @@ import {
 	isSymlink,
 	isFileSync,
 	isDirectorySync,
-	isSymlinkSync
+	isSymlinkSync,
 } from './index.js';
 
 expectType<Promise<boolean>>(isFile('package.json'));

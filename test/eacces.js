@@ -1,4 +1,4 @@
-import fs, {promises as fsPromises} from 'fs';
+import fs, {promises as fsPromises} from 'node:fs';
 import test from 'ava';
 import {isFile, isFileSync} from '../index.js';
 
@@ -12,21 +12,21 @@ Object.defineProperties(fsPromises, {
 	stat: {
 		value(filePath, callback) {
 			callback(fakeError(filePath));
-		}
-	}
+		},
+	},
 });
 
 Object.defineProperties(fs, {
 	stat: {
 		value(filePath, callback) {
 			callback(fakeError(filePath));
-		}
+		},
 	},
 	statSync: {
 		value(filePath) {
 			throw fakeError(filePath);
-		}
-	}
+		},
+	},
 });
 
 test('throws on EACCES error - async', async t => {

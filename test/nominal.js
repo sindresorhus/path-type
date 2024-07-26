@@ -1,5 +1,13 @@
+import process from 'node:process';
 import test from 'ava';
-import {isDirectory, isDirectorySync, isFile, isFileSync, isSymlink, isSymlinkSync} from '../index.js';
+import {
+	isDirectory,
+	isDirectorySync,
+	isFile,
+	isFileSync,
+	isSymlink,
+	isSymlinkSync,
+} from '../index.js';
 
 test('.file()', async t => {
 	t.true(await isFile('package.json'));
