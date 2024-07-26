@@ -1,4 +1,4 @@
-import fs, {promises as fsPromises} from 'fs';
+import fs, {promises as fsPromises} from 'node:fs';
 
 async function isType(fsStatType, statsMethodName, filePath) {
 	if (typeof filePath !== 'string') {

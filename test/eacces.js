@@ -1,4 +1,4 @@
-import fs, {promises as fsPromises} from 'fs';
+import fs, {promises as fsPromises} from 'node:fs';
 import test from 'ava';
 import {isFile, isFileSync} from '../index.js';
 
