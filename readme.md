@@ -2,6 +2,9 @@
 
 > Check if a path is a file, directory, or symlink
 
+> [!TIP]
+> You may not need this package. Node.js provides the same functionality natively via [`fs.stat`](https://nodejs.org/api/fs.html#fspromisesstatpath-options) (e.g., `(await stat(path)).isFile()`).
+
 ## Install
 
 ```sh
